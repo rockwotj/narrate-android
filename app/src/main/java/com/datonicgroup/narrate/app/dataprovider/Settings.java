@@ -152,46 +152,6 @@ public abstract class Settings {
         return getValue("setting_sync_drive_pendingmanualsync", false);
     }
 
-    public static void setDropboxSyncEnabled(boolean enabled) {
-        setKeyValue("setting_sync_dropbox_enabled", enabled);
-    }
-
-    public static boolean getDropboxSyncEnabled() {
-        return getValue("setting_sync_dropbox_enabled", false);
-    }
-
-    public static void setDropboxSyncFolder(String folder) {
-        setKeyValue("setting_sync_dropbox_folder", folder);
-    }
-
-    public static String getDropboxSyncFolder() {
-        return getValue("setting_sync_dropbox_folder", null);
-    }
-
-    public static void setDropboxSyncFolderType(SyncFolderType type) {
-        setKeyValue("setting_sync_dropbox_folder_type", type.ordinal());
-    }
-
-    public static int getDropboxSyncFolderType() {
-        return getValue("setting_sync_dropbox_folder_type", 0);
-    }
-
-    public static void setDropboxSyncDayOne(boolean enabled) {
-        setKeyValue("setting_sync_dropbox_dayone", enabled);
-    }
-
-    public static boolean getDropboxSyncDayOne() {
-        return getValue("setting_sync_dropbox_dayone", false);
-    }
-
-    public static void setDropboxSyncToken(String token) {
-        setKeyValue("setting_sync_dropbox_token", token);
-    }
-
-    public static String getDropboxSyncToken() {
-        return getValue("setting_sync_dropbox_token", null);
-    }
-
     public static void setSyncOnMobileData(boolean sync) {
         setKeyValue("setting_sync_mobile_data", sync);
     }
@@ -310,13 +270,5 @@ public abstract class Settings {
 
     public static int getEntryCount() {
         return getValue("key_num_entries", BuildConfig.VERSION_CODE);
-    }
-
-    public static void setUserId(String id) {
-        setKeyValue("narrate_parse_user_id", id);
-    }
-
-    public static String getUserId() {
-        return getValue("narrate_parse_user_id", null);
     }
 }

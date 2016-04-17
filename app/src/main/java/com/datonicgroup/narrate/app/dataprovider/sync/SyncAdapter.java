@@ -28,7 +28,6 @@ import java.util.regex.Pattern;
 public class SyncAdapter extends AbstractThreadedSyncAdapter {
 
     private static final Pattern sSanitizeAccountNamePattern = Pattern.compile("(.).*?(.?)@");
-    private static DropboxSyncService mDropboxService;
     private static GoogleDriveSyncService mGoogleDriveService;
 
     public SyncAdapter(Context context, boolean autoInitialize) {
@@ -48,10 +47,6 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
     @Override
     public void onPerformSync(final Account account, Bundle extras, String authority,
                               final ContentProviderClient provider, final SyncResult syncResult) {
-
-        if (Settings.getDropboxSyncEnabled() && mDropboxService == null) {
-            mDropboxService = new DropboxSyncService();
-        }
 
         if (Settings.getGoogleDriveSyncEnabled() && mGoogleDriveService == null) {
             mGoogleDriveService = new GoogleDriveSyncService();
@@ -88,19 +83,12 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 
             LogUtil.log("NarrateSync", "Resync all files!");
 
-            if (Settings.getDropboxSyncEnabled()) {
-                mDropboxService.resyncFiles();
-            }
-
 //            if (Settings.getGoogleDriveSyncEnabled()) {
 //                mGoogleDriveService.manualSync();
 //            }
 
         } else {
 
-            if (Settings.getDropboxSyncEnabled()) {
-                mDropboxService.sync();
-            }
 
             if (Settings.getGoogleDriveSyncEnabled()) {
                 try {

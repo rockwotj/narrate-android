@@ -28,7 +28,6 @@ proguard/
 *.ipr
 *.iws
 .idea/
-local.properties
 
 #Log Files
 *.log
@@ -39,3 +38,5 @@ target
 #Crashlytics
 crashlytics-build.properties
 com_crashlytics_export_strings.xml
+
+*.jks

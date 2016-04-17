@@ -172,14 +172,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         } else {
 
-            if (!Settings.getShownReviewDialog() &&
-                    Settings.getLoginCount() > 4 &&
-                    (Settings.getEntryCount() > 3) &&
-                    (DateTime.now().getMillis() - Settings.getJoinDate()) > (3 * DateUtil.DAY_IN_MILLISECONDS)) {
-
-                Settings.setShownReviewDialog(true);
-                new ReviewDialog().show(getSupportFragmentManager(), "ReviewDialogFragment");
-            }
+//            if (!Settings.getShownReviewDialog() &&
+//                    Settings.getLoginCount() > 4 &&
+//                    (Settings.getEntryCount() > 3) &&
+//                    (DateTime.now().getMillis() - Settings.getJoinDate()) > (3 * DateUtil.DAY_IN_MILLISECONDS)) {
+//
+//                Settings.setShownReviewDialog(true);
+//                new ReviewDialog().show(getSupportFragmentManager(), "ReviewDialogFragment");
+//            }
 
         }
 

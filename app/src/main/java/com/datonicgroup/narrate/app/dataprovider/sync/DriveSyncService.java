@@ -3,7 +3,6 @@ package com.datonicgroup.narrate.app.dataprovider.sync;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.crashlytics.android.Crashlytics;
 import com.datonicgroup.narrate.app.BuildConfig;
 import com.datonicgroup.narrate.app.dataprovider.Settings;
 import com.datonicgroup.narrate.app.dataprovider.providers.EntryHelper;
@@ -86,7 +85,6 @@ public class DriveSyncService extends AbsSyncService {
             throw ue;
         } catch (Exception e) {
             LogUtil.log(getClass().getSimpleName(), "Exception in creation: " + e);
-            if (!BuildConfig.DEBUG) Crashlytics.logException(e);
         }
 
         if (CLEAR_FOLDER_CONTENTS) {
@@ -139,7 +137,6 @@ public class DriveSyncService extends AbsSyncService {
 
         } catch (Exception e) {
             LogUtil.log(getClass().getSimpleName(), "Exception in save() - " + e.getMessage());
-            if (!BuildConfig.DEBUG) Crashlytics.logException(e);
         }
     }
 
@@ -181,11 +178,9 @@ public class DriveSyncService extends AbsSyncService {
 
             } catch (Exception e) {
                 LogUtil.log(getClass().getSimpleName(), "Exception in download() - " + e.getMessage());
-                if (!BuildConfig.DEBUG) Crashlytics.logException(e);
             }
         } else {
             LogUtil.log(getClass().getSimpleName(), "file == null: " + (file == null));
-            if (!BuildConfig.DEBUG) Crashlytics.log("file == null in DriveSyncService#download(Entry): " + (file == null));
         }
 
         return null;
@@ -214,11 +209,9 @@ public class DriveSyncService extends AbsSyncService {
             } catch (IOException e) {
                 // An error occurred.
                 e.printStackTrace();
-                if (!BuildConfig.DEBUG) Crashlytics.logException(e);
             }
         } else {
             LogUtil.log(getClass().getSimpleName(), "file == null: " + (file == null));
-            if (!BuildConfig.DEBUG) Crashlytics.log("file == null in DriveSyncService#delete(Entry): " + (file == null));
 
             info.setSyncStatus(SyncStatus.OK);
             SyncInfoDao.saveData(info);
@@ -269,7 +262,6 @@ public class DriveSyncService extends AbsSyncService {
 
         } catch (Exception e) {
             LogUtil.log(getClass().getSimpleName(), "Exception in save(Photo) - " + e.getMessage());
-            if (!BuildConfig.DEBUG) Crashlytics.logException(e);
         }
     }
 
@@ -323,20 +315,16 @@ public class DriveSyncService extends AbsSyncService {
 
                     } else {
                         LogUtil.log(getClass().getSimpleName(), "image == null");
-                        if (!BuildConfig.DEBUG) Crashlytics.log("image == null in DriveSyncService#downloadPhoto(): ");
                     }
 
                 } catch (Exception e) {
                     LogUtil.log(getClass().getSimpleName(), "Exception in download(Photo) - " + e.getMessage());
-                    if (!BuildConfig.DEBUG) Crashlytics.logException(e);
                 }
             } else {
                 LogUtil.log(getClass().getSimpleName(), "file == null: " + (file == null));
-                if (!BuildConfig.DEBUG) Crashlytics.log("file == null in DriveSyncService#download(Photo): " + (file == null));
             }
         } catch (Exception e) {
             LogUtil.log(getClass().getSimpleName(), "Exception in download(Photo) - " + e.getMessage());
-            if (!BuildConfig.DEBUG) Crashlytics.logException(e);
         }
 
         return null;
@@ -367,12 +355,10 @@ public class DriveSyncService extends AbsSyncService {
             } catch (IOException e) {
                 // An error occurred.
                 e.printStackTrace();
-                if (!BuildConfig.DEBUG) Crashlytics.logException(e);
                 return false;
             }
         } else {
             LogUtil.log(getClass().getSimpleName(), "file == null: " + (file == null));
-            if (!BuildConfig.DEBUG) Crashlytics.log("file == null in DriveSyncService#delete(Photo): " + (file == null));
 
             info.setSyncStatus(SyncStatus.OK);
             SyncInfoDao.saveData(info);
@@ -466,7 +452,6 @@ public class DriveSyncService extends AbsSyncService {
                 return dataObjects;
             }
         } catch (Exception e) {
-            if (!BuildConfig.DEBUG) Crashlytics.logException(e);
             e.printStackTrace();
             throw new SyncFailedException(e.getMessage());
         }
@@ -497,7 +482,6 @@ public class DriveSyncService extends AbsSyncService {
                 }
             }
         } catch (Exception e) {
-            if (!BuildConfig.DEBUG) Crashlytics.logException(e);
             e.printStackTrace();
             throw new SyncFailedException(e.getMessage());
         }
@@ -522,7 +506,6 @@ public class DriveSyncService extends AbsSyncService {
             } catch (IOException e) {
                 LogUtil.e(getClass().getSimpleName()
                         , "An error occurred: ", e);
-                if (!BuildConfig.DEBUG) Crashlytics.logException(e);
                 request.setPageToken(null);
             }
         } while (request.getPageToken() != null &&
@@ -548,7 +531,6 @@ public class DriveSyncService extends AbsSyncService {
             } catch (IOException e) {
                 LogUtil.e(getClass().getSimpleName()
                         , "An error occurred: ", e);
-                if (!BuildConfig.DEBUG) Crashlytics.logException(e);
                 request.setPageToken(null);
             }
         } while (request.getPageToken() != null &&
@@ -580,7 +562,6 @@ public class DriveSyncService extends AbsSyncService {
 
         } catch (Exception e) {
             e.printStackTrace();
-            if (!BuildConfig.DEBUG) Crashlytics.logException(e);
         }
 
         return null;

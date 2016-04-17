@@ -84,9 +84,6 @@ public class SyncInfoManager {
 
         List<SyncService> services = new ArrayList<>();
 
-        if (Settings.getDropboxSyncEnabled())
-            services.add(SyncService.Dropbox);
-
         if (Settings.getGoogleDriveSyncEnabled())
             services.add(SyncService.GoogleDrive);
 

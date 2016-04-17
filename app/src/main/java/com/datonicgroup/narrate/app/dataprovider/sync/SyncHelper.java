@@ -87,9 +87,6 @@ public class SyncHelper {
 
         List<AbsSyncService> syncServices = new ArrayList<>();
 
-        if (Settings.getDropboxSyncEnabled())
-            syncServices.add(new DropboxSyncService());
-
         if (Settings.getGoogleDriveSyncEnabled()) {
             try {
                 DriveSyncService syncService = new DriveSyncService();

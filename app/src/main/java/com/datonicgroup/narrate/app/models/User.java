@@ -17,7 +17,7 @@ public abstract class User {
     public static boolean isAbleToSync() {
 
         if ( Settings.getSyncEnabled() ) {
-            if (Settings.getGoogleDriveSyncEnabled() || Settings.getDropboxSyncEnabled()) {
+            if (Settings.getGoogleDriveSyncEnabled()) {
                 return Settings.getSyncOnMobileData() || NetworkUtil.isOnWifi();
             } else
                 return false;

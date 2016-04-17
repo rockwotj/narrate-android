@@ -17,7 +17,7 @@ import java.util.Map;
 public class NetworkUtil {
 
     public static boolean hasInternet() {
-        NetworkInfo info = (NetworkInfo) ((ConnectivityManager) GlobalApplication.getAppContext()
+        NetworkInfo info = ((ConnectivityManager) GlobalApplication.getAppContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
 
         if (info == null || !info.isConnected()) {
@@ -33,7 +33,7 @@ public class NetworkUtil {
     }
 
     public static boolean isOnWifi() {
-        NetworkInfo info = (NetworkInfo) ((ConnectivityManager) GlobalApplication.getAppContext()
+        NetworkInfo info = ((ConnectivityManager) GlobalApplication.getAppContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE)).getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
         if (info == null) return false;

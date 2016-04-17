@@ -16,7 +16,6 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.crashlytics.android.Crashlytics;
 import com.datonicgroup.narrate.app.BuildConfig;
 import com.datonicgroup.narrate.app.R;
 import com.datonicgroup.narrate.app.ui.GlobalApplication;
@@ -377,7 +376,6 @@ public class FilterSortDialog extends MaterialDialogFragment implements Compound
                     i.putExtra(LocalContract.COMMAND, LocalContract.REFRESH_DATA);
                     LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(i);
                 } catch (JSONException e) {
-                    if (!BuildConfig.DEBUG) Crashlytics.logException(e);
                 }
                 break;
             case 1: // negative

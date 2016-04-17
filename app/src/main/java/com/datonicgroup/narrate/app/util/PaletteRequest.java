@@ -3,7 +3,6 @@ package com.datonicgroup.narrate.app.util;
 import android.graphics.Color;
 import android.support.v7.graphics.Palette;
 
-import com.crashlytics.android.Crashlytics;
 import com.datonicgroup.narrate.app.BuildConfig;
 
 /**
@@ -157,7 +156,7 @@ public class PaletteRequest {
             }
         } catch (IllegalArgumentException e) {
             //This can happen if a Color we're trying to get is translucent.
-            if (!BuildConfig.DEBUG) Crashlytics.logException(e);
+            e.printStackTrace();
         }
         return Color.GRAY;
     }

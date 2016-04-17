@@ -303,7 +303,7 @@ public class LocalBackupManager {
         FileUtil.deleteDirectory(dest);
 
         // re-enable syncing
-        if (Settings.getDropboxSyncEnabled() || Settings.getGoogleDriveSyncEnabled()) {
+        if (Settings.getGoogleDriveSyncEnabled()) {
 
             Account acc = User.getAccount();
 

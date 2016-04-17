@@ -158,7 +158,7 @@ public class UpgradeDialog {
                     }
                 }
 
-                if (Settings.getDropboxSyncEnabled() || Settings.getGoogleDriveSyncEnabled())
+                if (Settings.getGoogleDriveSyncEnabled())
                     DataManager.getInstance().sync();
             case 29:
                 AccountManager accountManager = AccountManager.get(GlobalApplication.getAppContext());
@@ -174,7 +174,7 @@ public class UpgradeDialog {
                     accountManager.addAccountExplicitly(acc, null, null);
                 }
 
-                if (Settings.getDropboxSyncEnabled() || Settings.getGoogleDriveSyncEnabled()) {
+                if (Settings.getGoogleDriveSyncEnabled()) {
                     ContentResolver.setSyncAutomatically(acc, Contract.AUTHORITY, true);
 
                     Context context = GlobalApplication.getAppContext();
@@ -191,7 +191,7 @@ public class UpgradeDialog {
                 }
 
             case 32:
-                if (Settings.getDropboxSyncEnabled() || Settings.getGoogleDriveSyncEnabled())
+                if (Settings.getGoogleDriveSyncEnabled())
                     ContentResolver.setSyncAutomatically(User.getAccount(), Contract.AUTHORITY, true);
             case 37:
                 // update settings
@@ -199,7 +199,6 @@ public class UpgradeDialog {
                 SharedPreferences.Editor editor = prefs.edit();
 
                 boolean syncDropbox = prefs.getBoolean("useDropbox", false);
-                String dropboxToken = prefs.getString("dropboxToken", null);
                 boolean integrateDayOne = prefs.getBoolean("integrateDayOne", false);
                 String syncFolder = prefs.getString("syncFolder", null);
                 SyncFolderType syncFolderType = SyncFolderType.values()[prefs.getInt("syncFolderType", 0)];
@@ -209,22 +208,11 @@ public class UpgradeDialog {
                 editor.remove("syncFolder");
                 editor.remove("syncFolderType");
 
-                Settings.setDropboxSyncEnabled(syncDropbox);
-                Settings.setDropboxSyncDayOne(integrateDayOne);
-                if ( syncDropbox && dropboxToken != null ) {
-                    Settings.setDropboxSyncToken(dropboxToken);
-
-                    if ( syncFolder != null ) {
-                        Settings.setDropboxSyncFolder(syncFolder);
-                        Settings.setDropboxSyncFolderType(syncFolderType);
-                    }
-                }
-
                 boolean syncGoogleDrive = prefs.getBoolean("proGoogleDriveSync", false);
                 Settings.setGoogleDriveSyncEnabled(syncGoogleDrive);
                 editor.remove("proGoogleDriveSync");
 
-                if ( syncGoogleDrive || syncDropbox ) {
+                if ( syncGoogleDrive ) {
                     Settings.setSyncEnabled(true);
                     String autoSyncInterval = prefs.getString("key_sync_interval", null);
 

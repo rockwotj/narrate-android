@@ -183,9 +183,6 @@ public class MaterialPreferencesActivity extends BaseActivity implements View.On
     protected void onResume() {
         super.onResume();
 
-        if (mSyncCard.mAuthenticatingDropbox)
-            mSyncCard.onResume();
-
         if ( mLinksCard != null )
             mLinksCard.refreshPlusOneView();
     }
